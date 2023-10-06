@@ -1,46 +1,70 @@
-#include <stdio.h>
 #include "farsh.h"
-/**
- *farsh - The name of the simple shell function to be displayed
- *disp_farsh - The function
+
+/*
+ *disp_farsh_prompt- displays the simple shell prom
+ *@argus - Arguments
  *
- *Return - 0 (EXIT_SUCCESS)
+ * Return - Always 0 on success
  */
+
+void disp_farsh_prompt(void)
+{
+	printf("farsh $ ");
+}
 
 int main(void)
 {
-	char type_in[MAX_INPUT_SIZE];
+	char type_in[MAX_COMMAND_LENGTH];
+	char *argus[2];
 
-	for (;;)
+	while (1)
 	{
-	/**
-	 *  Display a simple prompt
-	 *  Flush the output buffer to ensure the prompt is displayed
-	 */
-	printf("farsh $");
-	fflush(stdout);
-	/**
-	 *  Read user input
-	 */
+		disp_farsh_prompt();
 	if (fgets(type_in, sizeof(type_in), stdin) == NULL)
 	{
-	break;
+		if (feof(stdin))
+		{
+			printf("\n");
+			break;
+		}
+		else
+		{
+			perror("Error  type_in");
+			exit(EXIT_FAILURE);
+		}
 	}
-	/**
-	 *  Remove trailing newline character
-	 */
-	type_in[strcspn(type_in, "\n")] = '\0';
-	/**
-	 * Process the user input (you can add your shell logic here)
-	 */
-	if (strcmp(type_in, "exit") == 0)
+	type_in[strlen(type_in) - 1] = '\0';
+	args[0] = strtok(type_in, " ";
+
+	if (argus[0] == NULL)
 	{
-		printf("Exiting the shell.\n");
-		break;
+	continue;
+	}
+	pid_t pid = fork();
+
+	if (pid == -1)
+	{
+	perror("Fork err");
+	exit(EXIT_FAILURE);
+	}
+	else if (pid == 0)
+	{
+	if (execvp(argus[0], argus) == -1)
+	{
+		perror("Exec err");
+	exit(EXIT_FAILURE);
+	}
 	}
 	else
 	{
-		printf("You entered: %s\n", type_in);
+		int detail;
+
+		if (waitpid(pid, &detail, 0) == -1)
+		{
+			perror("Wait err");
+			exit(EXIT_FAILURE);
+		}
 	}
-	return (EXIT_SUCCES);
+	}
+	return (0);
 }
