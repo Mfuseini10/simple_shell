@@ -11,6 +11,8 @@
 #include <sys/wait.h>
 #include <string.h>
 
+#define MAX_INPUT_SIZE 1024
+
 size_t my_strlen(const char *str);
 
 char *my_strcpy(const char *src);
