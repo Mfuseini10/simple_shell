@@ -12,7 +12,10 @@
 #include <string.h>
 
 #define MAX_COMMAND_LENGTH 256
+#define MAX_INPUT_LENGTH 1024
+#define MAX_ARG_LENGTH 64
 
+void execute_command(char* args[])
 void disp_farsh_prompt();
 size_t my_strlen(const char *str);
 
