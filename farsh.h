@@ -19,10 +19,9 @@ int atoi(const char *str);
 int main(int ac, char **av);
 pid_t getpid(void);
 pid_t getppid(void);
-
+ssize_t getline(char **lineptr, size_t *n, FILE *stdin);
 
 void disp_farsh_prompt();
-size_t my_strlen(const char *str);
 
 char *my_strcpy(const char *src);
 
