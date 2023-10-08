@@ -15,7 +15,12 @@
 #define MAX_INPUT_LENGTH 1024
 #define MAX_ARG_LENGTH 64
 
-void execute_command(char* args[])
+int atoi(const char *str);
+int main(int ac, char **av);
+pid_t getpid(void);
+pid_t getppid(void);
+
+
 void disp_farsh_prompt();
 size_t my_strlen(const char *str);
 
