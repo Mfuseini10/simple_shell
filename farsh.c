@@ -33,7 +33,7 @@ void str_cmb(char **buffer, char *str1, char *str2)
  *
  * Return: Always 0
  */
-int main(void)
+int main(int ac, char **av)
 {
 	int status;
 	char *buf = NULL;
