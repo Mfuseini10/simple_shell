@@ -15,8 +15,8 @@
 #define MAX_INPUT_LENGTH 1024
 #define MAX_ARG_LENGTH 64
 
+
 int atoi(const char *str);
-int main(int argc, char *argv[], char **env);
 pid_t getpid(void);
 pid_t getppid(void);
 ssize_t getline(char **lineptr, size_t *n, FILE *stdin);
