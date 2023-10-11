@@ -16,7 +16,7 @@ void handle_child_execution(const char *cmd)
 
 int main(void)
 {char input[MAX_INPUT_LENGTH];
-
+	pid_t child_pid = fork();
 	while (true)
 	{ssize_t read_len = read(STDIN_FILENO, input, MAX_INPUT_LENGTH);
 		/*** Displays the shell prompt **/
@@ -30,7 +30,6 @@ int main(void)
 	if (input[read_len - 1] == '\n')/* excluding the newline character **/
 	{input[read_len - 1] = '\0';
 	}
-	pid_t child_pid = fork();/** Fork a child process **/
 
 	if (child_pid == -1)
 	{perror("Fork failed");
@@ -52,6 +51,7 @@ int main(void)
 		}
 		else
 			perror("Child pID aborted");
+	}
 	}
 	}
 	printf("EXIT...NEXT TIME!\n");
