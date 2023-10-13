@@ -16,18 +16,10 @@
 #define MAX_ARG_LENGTH 64
 
 
-int atoi(const char *str);
 pid_t getpid(void);
 pid_t getppid(void);
-ssize_t getline(char **lineptr, size_t *n, FILE *stdin);
-char** split_string(const char *str, const char *delim, int *argc);
-int check_file_status(const char *filename, struct stat *statbuf);
-void disp_farsh_prompt();
+void handle_child_execution(const char *cmd);
 
-char *my_strcpy(const char *src);
 
-void str_cmb(char **buffer, char *str1, char *str2);
-
-char **get_path(void);
 
 #endif

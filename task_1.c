@@ -1,8 +1,8 @@
 #include "farsh.h"
 /**
  * main- the main entery
- *@cmd - command to be tyed in
- *@handle_child_execution - executes the child pid
+ *cmd - command to be tyed in
+ *handle_child_execution - executes the child pid
  *Return - Always 0
  */
 void handle_child_execution(const char *cmd)
@@ -17,10 +17,11 @@ void handle_child_execution(const char *cmd)
 int main(void)
 {char input[MAX_INPUT_LENGTH];
 	pid_t child_pid = fork();
+
 	while (true)
 	{ssize_t read_len = read(STDIN_FILENO, input, MAX_INPUT_LENGTH);
 		/*** Displays the shell prompt **/
-	write(STDOUT_FILENO, "simple_shell> ", 14);
+	write(STDOUT_FILENO, "farsh> ", 7);
 	if (read_len == -1)
 	{perror("Error (input)");
 		continue;
@@ -30,7 +31,6 @@ int main(void)
 	if (input[read_len - 1] == '\n')/* excluding the newline character **/
 	{input[read_len - 1] = '\0';
 	}
-
 	if (child_pid == -1)
 	{perror("Fork failed");
 		continue;
