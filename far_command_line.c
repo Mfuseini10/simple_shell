@@ -1,7 +1,7 @@
 #include "farsh.h"
 /**
- *
- *
+ *far_shell_run -a function that repeat prompt for user for command
+ *@far_input -
  *
  *
  *
@@ -21,9 +21,12 @@ void far_shell_run(void)
 		far_exit_code = far_execute_command(far_parsed_args);
 		free(far_input_line);
 		free(far_parsed_args);
-	}
-	while (far_exit_code)
+	} while (far_exit_code);
 }
+/**
+   *far_read_input - a pointer to a memory string to store
+   *Return: input
+   */
 char *far_read_input(void)
 {
 	char *far_input = NULL;
@@ -44,6 +47,11 @@ char *far_read_input(void)
 	}
 	return (far_input);
 }
+/**
+ * far_tokenize_input -tokenize, handle memory alloc and checks for errors
+ * @input: a pointer to stdin
+ * Return: input
+ */
 char **far_tokenize_input(char *input)
 {
 	int far_buffer_size = FAR_COMMAND_BUFFER_SIZE;
@@ -79,6 +87,12 @@ char **far_tokenize_input(char *input)
 	far_command_tokens[far_position] = NULL;
 	return (far_command_tokens);
 }
+/**
+ * far_execute_command - executing the commands
+ *@args: nunber of arguments
+ *
+ * return: always (1) on success
+ */
 int far_execute_command(char **args)
 {
 	int q = 1;
@@ -94,7 +108,7 @@ int far_execute_command(char **args)
 	}
 	else if (strcmp(args[0], "echo") == 0)
 	{
-		for (q = 1; args[i] != NULL; q++)
+		for (q = 1; args[q] != NULL; q++)
 		{
 			printf("%s ", args[q]);
 		}
@@ -119,5 +133,6 @@ int far_execute_command(char **args)
 
 			waitpid(pid, &status, 0);
 		}
+	}
 	return (1);
 }
