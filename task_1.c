@@ -1,8 +1,8 @@
 #include "farsh.h"
 /**
- * main- the main entery
- *cmd - command to be tyed in
- *handle_child_execution - executes the child pid
+ *handle_child_execution - executes the pid
+ *@cmd: command to be tyed in
+ *
  *Return - Always 0
  */
 void handle_child_execution(const char *cmd)
@@ -13,7 +13,11 @@ void handle_child_execution(const char *cmd)
 	_exit(EXIT_FAILURE);
 	}
 }
-
+/**
+ * main - the entery point
+ *
+ *Return: always (0) on success
+ */
 int main(void)
 {char input[MAX_INPUT_LENGTH];
 	pid_t child_pid = fork();
