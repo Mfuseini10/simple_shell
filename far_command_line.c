@@ -4,7 +4,7 @@
  *@far_input -
  *
  *
- *
+ *Return: always zero on success
  */
 
 
@@ -88,10 +88,10 @@ char **far_tokenize_input(char *input)
 	return (far_command_tokens);
 }
 /**
- * far_execute_command - executing the commands
+ * far_execute_command - a function that executes the commands
  *@args: nunber of arguments
  *
- * return: always (1) on success
+ * Return: command
  */
 int far_execute_command(char **args)
 {
