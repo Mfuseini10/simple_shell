@@ -24,8 +24,7 @@ int far_execute_command(char **args);
 
 pid_t getpid(void);
 pid_t getppid(void);
-void handle_child_execution(const char *cmd);
-
+void handle_child_execution(const char *cmd, char *const envp[]);
 
 
 #endif

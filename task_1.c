@@ -2,12 +2,12 @@
 /**
  *handle_child_execution - executes the pid
  *@cmd: command to be tyed in
- *
+ *@envp: the environment
  *Return - Always 0
  */
-void handle_child_execution(const char *cmd)
+void handle_child_execution(const char *cmd, char *const envp[])
 {
-	if (execlp(cmd, cmd, NULL) == -1)
+	if (execve(cmd, (char *const *)&cmd, envp) == -1)
 	{
 	perror("Command not found");
 	_exit(EXIT_FAILURE);
@@ -21,6 +21,11 @@ void handle_child_execution(const char *cmd)
 int main(void)
 {char input[MAX_INPUT_LENGTH];
 	pid_t child_pid = fork();
+
+	char *far_env[] = {"PATH=/usr/local/bin:/usr/bin:/bin",
+		"MY_VARIABLE=my_value",
+		NULL
+	};
 
 	while (true)
 	{
@@ -45,7 +50,7 @@ int main(void)
 		continue;
 	}
 	else if (child_pid == 0)
-	{handle_child_execution(input);/** Child process **/
+	{handle_child_execution(input, far_env);/** Child process **/
 	}
 	else
 	{int detail;/** Parent process executes after child process**/
@@ -55,6 +60,6 @@ int main(void)
 	}
 	}
 	}
-	printf("EXIT...NEXT TIME!\n");
+	printf("EXIT...TRY NEXT TIME!\n");
 	return (0);
 }
