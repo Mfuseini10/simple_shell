@@ -40,7 +40,7 @@ int far_start_program(char **far_args) {
     return 1;
 }
 
-int far_execute_command(char **far_args) {
+int far_execute_cmd(char **far_args) {
     char *far_builtin_str[] = {"far_cd", "far_exit"};
     int (*far_builtin_func[])(char **) = {&far_cd, &far_exit};
     int i;
